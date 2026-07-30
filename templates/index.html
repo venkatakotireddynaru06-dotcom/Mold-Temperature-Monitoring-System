@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mold Temperature Monitoring System</title>
+
+    <meta http-equiv="refresh" content="5">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div id="clock"></div>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>🏭 Mold Temperature Monitoring System</h1>
+
+        <p>
+            Real-Time Process Monitoring for Precision Plastic Injection Molding
+        </p>
+
+    </div>
+
+    <!-- Dashboard -->
+
+    <div class="stats">
+
+        <div class="box">
+
+            <h3>Current Temperature</h3>
+
+            <h2>{{ temperature }} °C</h2>
+
+        </div>
+
+        <div class="box">
+
+            <h3>Status</h3>
+
+            <div class="status {{ color }}">
+                {{ status }}
+            </div>
+
+        </div>
+
+        <div class="box">
+
+            <h3>Ideal Range</h3>
+
+            <h2>35°C - 50°C</h2>
+
+        </div>
+
+        <div class="box">
+
+            <h3>Production</h3>
+
+            <h2>Running</h2>
+
+        </div>
+
+    </div>
+
+    <!-- Temperature Card -->
+
+    <div class="card">
+
+        <h2>Current Mold Temperature</h2>
+
+        <div class="temp">
+
+            {{ temperature }} °C
+
+        </div>
+
+        <p>{{ recommendation }}</p>
+
+    </div>
+
+    <!-- Temperature Graph -->
+
+    <div class="card">
+
+        <h2>Temperature Trend</h2>
+
+        <img
+            src="{{ url_for('static', filename='temperature.png') }}"
+            alt="Temperature Trend"
+            style="width:100%;border-radius:12px;"
+        >
+
+    </div>
+
+    <!-- Temperature History -->
+
+    <div class="card">
+
+        <h2>Temperature History</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Time</th>
+
+                <th>Temperature</th>
+
+                <th>Status</th>
+
+            </tr>
+
+            {% for row in history %}
+
+            <tr>
+
+                <td>{{ row.time }}</td>
+
+                <td>{{ row.temp }} °C</td>
+
+                <td>{{ row.status }}</td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+        <!-- Production Summary -->
+
+    <div class="card">
+
+        <h2>Production Summary</h2>
+
+        <table>
+
+            <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+            </tr>
+
+            <tr>
+                <td>Today's Production</td>
+                <td>1240 Components</td>
+            </tr>
+
+            <tr>
+                <td>Average Mold Temperature</td>
+                <td>42.4 °C</td>
+            </tr>
+
+            <tr>
+                <td>Machine Status</td>
+                <td>Running</td>
+            </tr>
+
+            <tr>
+                <td>Quality Status</td>
+                <td>Stable</td>
+            </tr>
+
+            <tr>
+                <td>Estimated Defect Rate</td>
+                <td>0.8%</td>
+            </tr>
+
+            <tr>
+                <td>Cycle Time</td>
+                <td>18 sec</td>
+            </tr>
+
+            <tr>
+                <td>Operator</td>
+                <td>Process Engineer</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!-- Project Information -->
+
+    <div class="card">
+
+        <h2>Project Information</h2>
+
+        <table>
+
+            <tr>
+                <th>Parameter</th>
+                <th>Details</th>
+            </tr>
+
+            <tr>
+                <td>Project Name</td>
+                <td>Mold Temperature Monitoring System</td>
+            </tr>
+
+            <tr>
+                <td>Industry</td>
+                <td>Plastic Injection Molding</td>
+            </tr>
+
+            <tr>
+                <td>Department</td>
+                <td>Process Engineering</td>
+            </tr>
+
+            <tr>
+                <td>Technology Used</td>
+                <td>Python, Flask, HTML, CSS, Matplotlib</td>
+            </tr>
+
+            <tr>
+                <td>Ideal Mold Temperature</td>
+                <td>35°C – 50°C</td>
+            </tr>
+
+            <tr>
+                <td>Main Objective</td>
+                <td>
+                    Monitor mold temperature continuously to improve product quality,
+                    reduce defects and assist process engineers in maintaining stable
+                    manufacturing conditions.
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+    <!-- Benefits -->
+
+    <div class="card">
+
+        <h2>System Benefits</h2>
+
+        <ul>
+
+            <li>✔ Real-time mold temperature monitoring</li>
+
+            <li>✔ Live temperature trend graph</li>
+
+            <li>✔ Automatic abnormal temperature detection</li>
+
+            <li>✔ Reduces production defects</li>
+
+            <li>✔ Improves cooling efficiency</li>
+
+            <li>✔ Supports process engineers in decision making</li>
+
+            <li>✔ Better product quality</li>
+
+            <li>✔ Stable manufacturing process</li>
+
+            <li>✔ Reduces machine downtime</li>
+
+            <li>✔ Easy dashboard for factory monitoring</li>
+
+        </ul>
+
+    </div>
+
+    <div class="footer">
+
+        <h3>Mold Temperature Monitoring System</h3>
+
+        <p>
+            Developed by <strong>Naru Venkata Kotireddy</strong><br>
+            Process Engineer Demonstration Project
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+function updateClock(){
+
+    const now=new Date();
+
+    document.getElementById("clock").innerHTML=
+        now.toLocaleDateString()+" | "+
+        now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+</script>
+
+</body>
+
+</html>
